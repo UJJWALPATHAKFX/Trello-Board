@@ -1,4 +1,4 @@
-const express = require("express");
+
 const users = [{
     id:1,
     username:"Ujjwal",
@@ -36,5 +36,3 @@ const issues = [{
     title:"Add like pop up feature",
     boardId: 1 
 }];
-const app = express();
-app.listen(3000);
