@@ -269,11 +269,37 @@ app.post("/boards/:boardId/issues",authMiddleware,async function(req,res){
     });
 })
 //READ EPs
-app.get("/organizations",function(req,res){
-
+app.get("/organizations",authMiddleware,async function(req,res){
+    const userId = req.userId;
+    const organizations = await organizationModel.find({
+        members:userId
+    })
+    if(organizations.length === 0){
+        return res.status(404).json({
+            message:"No Organization Exist"
+        })
+    }
+    return res.status(200).json({
+        organizations
+    })
+    
 })
-app.get("/boards",function(req,res){
-
+app.get("/boards",authMiddleware,async function(req,res){
+    const userId = req.userId;
+    const organizations = await organizationModel.find({
+        members:userId
+    });
+    const organizationIds = organizations.map(
+        organization => organization._id
+    );
+    const boards = await boardModel.find({
+        organizationId:{
+            $in: organizationIds
+        }
+    })
+    return res.status(200).json({
+        boards
+    })
 })
 app.get("/issues",function(req,res){
     
