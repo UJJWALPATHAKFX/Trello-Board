@@ -4,29 +4,7 @@ const mongoose =  require("mongoose");
 const { authMiddleware } = require("./middleware");
 const {userModel,organizationModel,boardModel,issueModel} = require("./models");
 
-let USERS_ID=1;
-let ORGANIZATIONS_ID=1;
-let BOARDS_ID=1;
-let ISSUES_ID=1;
-const USERS = [ ];
-const ORGANIZATION = [];
-const BOARDS = [{
-    id:1,
-    title:"100xschool website frontend",
-    organizationId:1
-}];
-const ISSUES = [{
-    id:1,
-    title:"Add dark mode",
-    boardId: 1,
-    state:"In_PROGRESS"
-},
-{
-    id:2,
-    title:"Add like pop up feature",
-    boardId: 1 ,
-    state:"DONE"
-}];
+
  
 const app = express();
 app.use(express.json())
